@@ -19,6 +19,7 @@ public class Transaction {
     }
 
     public void write(){
+        System.out.println(name+" write");
 
     }
 }

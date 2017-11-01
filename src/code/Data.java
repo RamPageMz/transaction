@@ -20,6 +20,26 @@ public class Data {
         this.value = value;
     }
 
+    /*
+    *   上锁
+    * */
+    public void doLock(){
+        this.lock=true;
+        System.out.println(this.name+" lock");
+    }
+
+    /*
+    *   解锁
+    * */
+    public void unlock(){
+        this.lock=false;
+        System.out.println(this.name+" unlock");
+    }
+
+
+    /*
+    *
+    * */
     public String getName() {
         return name;
     }

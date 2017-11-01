@@ -15,7 +15,7 @@ public class Transaction {
     }
 
     public void read(){
-
+        System.out.println(name+" read");
     }
 
     public void write(){

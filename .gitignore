@@ -8,3 +8,5 @@
 out
 gen
 src/desscription
+.gitignore
+.xml

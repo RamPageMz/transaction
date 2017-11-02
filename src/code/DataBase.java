@@ -34,9 +34,17 @@ public class DataBase {
             dataArray[i]=new Data("data"+i,false,0);
         }
 
-        System.out.println("数据库数据初始化完成");
+        System.out.println("dataBase prepare");
     }
 
+    /*
+    *   输出所有的数据
+    * */
+    public void showData(){
+        for (int i=1;i<=dataBaseSize;i++){
+            System.out.print(dataArray[i].name+":"+dataArray[i].value+"  ");
+        }
+    }
 
 
     /*

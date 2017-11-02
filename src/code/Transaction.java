@@ -14,11 +14,12 @@ public class Transaction {
         this.name = name;
     }
 
-    public void read(){
-        System.out.println(name+" read");
+    public void read(Data data){
+        System.out.println(this.name+" read "+data.name);
     }
 
-    public void write(){
-
+    public void write(Data data,int value){
+        System.out.println(this.name+" write "+data.name+" "+value);
+        data.setValue(value);
     }
 }

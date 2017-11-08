@@ -36,7 +36,7 @@ public class Transaction {
 
     // 遍历map 输出操作信息
     public void showOperationInfo(){
-        System.out.println("Transaction "+this.name+" operation :");
+        System.out.println("事务 "+this.name+" 操作 :");
         for (Map.Entry<Integer,Integer> entry :this.map.entrySet()){
             System.out.print("data"+entry.getKey()+" -> "+entry.getValue()+" | ");
         }

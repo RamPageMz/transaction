@@ -33,17 +33,18 @@ public class DataBase {
             dataArray[i] = new Data("data" + i, false, 0);
         }
 
-        System.out.println("dataBase prepare");
+        System.out.println("数据库准备完毕");
     }
 
     /*
     *   输出所有的数据
     * */
     public void showData() {
-        System.out.println("show database data:");
+        System.out.println("\n数据信息:");
         for (int i = 0; i < dataBaseSize; i++) {
             System.out.print(dataArray[i].name + ":" + dataArray[i].value + "  ");
         }
+        System.out.println();
     }
 
 

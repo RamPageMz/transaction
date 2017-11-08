@@ -8,3 +8,6 @@
 out
 gen
 src/desscription
+.gitignore
+.xml
+.idea/workspace.xml

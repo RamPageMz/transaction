@@ -24,14 +24,13 @@ public class DataBase {
     * */
     public DataBase(int dataBaseSize) {
         this.dataBaseSize = dataBaseSize;
-        initData();
     }
 
-    public void initData(){
-        dataArray=new Data[this.dataBaseSize+1];
+    public void initData() {
+        dataArray = new Data[this.dataBaseSize + 1];
 
-        for (int i=1;i<=dataBaseSize;i++){
-            dataArray[i]=new Data("data"+i,false,0);
+        for (int i = 0; i < dataBaseSize; i++) {
+            dataArray[i] = new Data("data" + i, false, 0);
         }
 
         System.out.println("dataBase prepare");
@@ -40,9 +39,10 @@ public class DataBase {
     /*
     *   输出所有的数据
     * */
-    public void showData(){
-        for (int i=1;i<=dataBaseSize;i++){
-            System.out.print(dataArray[i].name+":"+dataArray[i].value+"  ");
+    public void showData() {
+        System.out.println("show database data:");
+        for (int i = 0; i < dataBaseSize; i++) {
+            System.out.print(dataArray[i].name + ":" + dataArray[i].value + "  ");
         }
     }
 

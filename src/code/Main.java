@@ -56,6 +56,27 @@ public class Main {
     }
 
     /*
+     *  Name        :   -transactionRead
+     *  Description :   -事务对数据的 读操作
+     *  Parameter   :   -t 事务名称     data 数据名称
+     *  Return      :   -
+     */
+    public static void transactionRead(){
+
+    }
+
+    /*
+     *  Name        :   -transactionWrite
+     *  Description :   -事务的 写操作
+     *  Parameter   :   -t 事务名称     data 数据名称       value 要写入的值
+     *  Return      :   -
+     */
+    public static void transactionWrite(Transaction t,Data data,int value){
+
+
+    }
+
+    /*
      *  Name        :   transactionInOrder
      *  Description :   顺序执行所有的事务 记录下数据库状态
      *  Parameter   :

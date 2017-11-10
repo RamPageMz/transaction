@@ -1,8 +1,10 @@
 package code;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Test {
+public class TestTran {
     public static void main(String[] args){
         Transaction transaction=new Transaction("tran1");
         int[] aa=new int[3];

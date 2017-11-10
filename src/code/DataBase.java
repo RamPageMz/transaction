@@ -27,7 +27,7 @@ public class DataBase {
     }
 
     public void initData() {
-        dataArray = new Data[this.dataBaseSize + 1];
+        dataArray = new Data[this.dataBaseSize];
 
         for (int i = 0; i < dataBaseSize; i++) {
             dataArray[i] = new Data("data" + i, false, 0);

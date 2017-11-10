@@ -5,15 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TestTran {
-    public static void main(String[] args){
-        Transaction transaction=new Transaction("tran1");
-        int[] aa=new int[3];
-        for (int i=0;i<3;i++){
-            aa[i]=i;
+    public static void main(String[] args) {
+        int i;
+        for (i = 0; i < 3; i++) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+//                    System.out.println("Thread ");
+                    for (int j=0;j<5;j++){
+                        System.out.print(j+" | ");
+                    }
+                    System.out.println();
+                }
+            }).start();
         }
-        transaction.dataObject=aa;
-
-        System.out.println(Arrays.toString(aa));
     }
 
 }

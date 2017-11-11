@@ -26,6 +26,8 @@ public class Main {
 
         transactionConcurrent();
 
+        transactionConcurrentWithLock();
+
     }
 
     /**********************      初始化对象     ********************** /
@@ -82,14 +84,14 @@ public class Main {
 
         //顺序执行每个事务
         for (int i = 0; i < transactionSize; i++) {
-            System.out.println("事务" + i + " :");
+            //System.out.println("事务" + i + " :");
             //直接使得每个事务对数据直接修改 不考虑锁的问题
             for (int j = 0; j < transactionArray[i].dataObject.length; j++) {
                 int dataNo = transactionArray[i].dataObject[j];
                 int value = transactionArray[i].map.get(dataNo);
                 transactionWrite(transactionArray[i], dataBase.dataArray[dataNo], value);
             }
-            System.out.println("\n");
+            //System.out.println("\n");
         }
 
         System.out.println("#######################\n顺序执行后的结果：");
@@ -116,7 +118,7 @@ public class Main {
 
         //线程并发
         for (int i = 0; i < transactionSize; i++) {
-            final int index=i;
+            final int index = i;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -146,17 +148,17 @@ public class Main {
      *
      */
     /**
-     *  Name        :   -transactionConcurrentWithLock
-     *  Description :   -事务并发 使用锁控制
-     *  Parameter   :   -
-     *  Return      :   -
+     * Name        :   -transactionConcurrentWithLock
+     * Description :   -事务并发 使用锁控制
+     * Parameter   :   -
+     * Return      :   -
      */
-    public static void transactionConcurrentWithLock(){
+    public static void transactionConcurrentWithLock() {
         dataBase.initData();
         initFinalTransaction();
 
         for (int i = 0; i < transactionSize; i++) {
-            final int index=i;
+            final int index = i;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -164,7 +166,7 @@ public class Main {
                     for (int j = 0; j < transactionsThread[index].dataObject.length; j++) {
                         int dataNo = transactionsThread[index].dataObject[j];
                         int value = transactionsThread[index].map.get(dataNo);
-                        transactionWrite(transactionsThread[index], dataBase.dataArray[dataNo], value);
+                        transactionWriteWithLock(transactionsThread[index], dataBase.dataArray[dataNo], value);
                     }
                 }
             }).start();
@@ -227,22 +229,26 @@ public class Main {
      */
     public static void transactionWrite(Transaction t, Data data, int value) {
         System.out.print("事务" + t.name + " : " + data.name + " " + data.value + " -> " + value + "\t|| ");
-        if (!data.lock) {   //lock == flase 没有上锁 则对数据修改
+        if (!data.lock) {   //lock == false 没有上锁 则对数据修改
             data.value = value;
-            System.out.println("success!");
+            //System.out.println("success!");
         } else {
-            System.out.println("fail! locked");
+            //System.out.println("fail! locked");
         }
     }
 
     /**
-     *  Name        :   -transactionWriteWithLock
-     *  Description :   -事务写操作 带锁
-     *  Parameter   :   -t 事务名称     data 数据名称       value 要写入的值
-     *  Return      :   -
+     * Name        :   -transactionWriteWithLock
+     * Description :   -事务写操作 带锁
+     * Parameter   :   -t 事务名称     data 数据名称       value 要写入的值
+     * Return      :   -
      */
     public static void transactionWriteWithLock(Transaction t, Data data, int value) {
-
+        if (!data.lock) {
+            data.doLock(t);
+        }
+        data.writeWithLock(t, value);
+        data.unlock(t);
     }
 
     /**

@@ -5,9 +5,10 @@ public class Data {
     *   数据库数据的属性
     *   name lock value
     * */
-    public String name="";
+    public String name = "";
     public Boolean lock;
     public int value;
+    public Transaction lockOfTransaction;   //记录上锁的事务名称
 
     /*
     *   constructor
@@ -23,17 +24,27 @@ public class Data {
     /*
     *   上锁
     * */
-    public void doLock(){
-        this.lock=true;
-        System.out.println(this.name+" lock");
+    public void doLock(Transaction transaction) {
+        this.lock = true;
+        this.lockOfTransaction = transaction;
+        //System.out.println(this.name + " lock");
+    }
+
+    public void writeWithLock(Transaction transaction, int value) {
+        if (transaction == this.lockOfTransaction && this.lock) {
+            this.value = value;
+        }
     }
 
     /*
     *   解锁
     * */
-    public void unlock(){
-        this.lock=false;
-        System.out.println(this.name+" unlock");
+    public void unlock(Transaction transaction) {
+        if (transaction == this.lockOfTransaction && this.lock) {
+            this.lock = false;
+            this.lockOfTransaction = null;
+            //System.out.println(this.name + " unlock");
+        }
     }
 
 
